@@ -1,4 +1,4 @@
-const { add, subtract, multiply, divide } = require('../calculator');
+const { add, subtract, multiply, divide, modulo, power, squareRoot } = require('../calculator');
 
 describe('calculator functions', () => {
   test('add: 2 + 3 = 5 (from image)', () => {
@@ -15,6 +15,19 @@ describe('calculator functions', () => {
 
   test('divide: 20 / 5 = 4 (from image)', () => {
     expect(divide(20, 5)).toBe(4);
+  });
+
+  // Extended operations (from calc-extended-operations.png)
+  test('modulo: 5 % 2 = 1', () => {
+    expect(modulo(5, 2)).toBe(1);
+  });
+
+  test('power: 2 ^ 3 = 8', () => {
+    expect(power(2, 3)).toBe(8);
+  });
+
+  test('squareRoot: sqrt(16) = 4', () => {
+    expect(squareRoot(16)).toBe(4);
   });
 
   test('addition: handles negatives and floats', () => {
@@ -40,10 +53,17 @@ describe('calculator functions', () => {
     expect(() => divide(1, 0)).toThrow(/division by zero/i);
   });
 
+  test('squareRoot: throws on negative input', () => {
+    expect(() => squareRoot(-4)).toThrow(/square root of negative/i);
+  });
+
   test('exports are functions', () => {
     expect(typeof add).toBe('function');
     expect(typeof subtract).toBe('function');
     expect(typeof multiply).toBe('function');
     expect(typeof divide).toBe('function');
+    expect(typeof modulo).toBe('function');
+    expect(typeof power).toBe('function');
+    expect(typeof squareRoot).toBe('function');
   });
 });
